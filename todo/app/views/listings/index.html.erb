@@ -1,0 +1,20 @@
+<!-- root(/) -->
+
+<h1>Todo's</h1>
+
+<!-- iterates over each listings item inorder to dispaly them in this ul -->
+<% @listings.each do |listing| %>
+  <ul>
+    <!-- displays each todo list item in listings -->
+    <!-- this todo list item also links to its own show path -->
+    <li><%= link_to listing.description, listing_path(listing) %></li>
+    <!-- this is a link to edit the current todo list item also passes its :id to the path -->
+    <%= link_to "edit todo", edit_listing_path(listing) %> ||
+    <!-- this is a link to delete the current todo listing item from the the todo list -->
+    <!-- prompts the user if he/she really want to delete the listing item -->
+    <%= link_to "[delete todo]", listing, method: :delete, data: { confirm: "Are you sure?" } %>
+  </ul>
+<% end %>
+
+<!-- this links to the new todo page-->
+<%= link_to "Creat a new todo", new_listing_path %>
